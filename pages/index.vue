@@ -1,9 +1,10 @@
-<template>
-  <h1>anecdote</h1>
-</template>
+<template><div></div> </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator';
+
+@Component
+export default class YourComponent extends Vue {}
 </script>
 
 <style scoped></style>
