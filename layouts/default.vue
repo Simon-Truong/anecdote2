@@ -1,11 +1,9 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col cols="3" />
-
+    <v-row dense justify="center">
       <v-col cols="6">
         <v-card>
-          <v-toolbar dense>
+          <v-toolbar flat dense>
             <v-toolbar-title>anecdote</v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -14,8 +12,6 @@
           <nuxt />
         </v-card>
       </v-col>
-
-      <v-col cols="3" />
     </v-row>
   </v-container>
 </template>
