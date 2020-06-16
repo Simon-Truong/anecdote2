@@ -1,4 +1,6 @@
 import colors from 'vuetify/es5/util/colors';
+// eslint-disable-next-line nuxt/no-cjs-in-config
+const path = require('path');
 
 export default {
   mode: 'universal',
@@ -35,7 +37,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['~assets/styles/tailwind.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -43,7 +45,7 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify'],
+  buildModules: ['@nuxt/typescript-build', '@nuxtjs/vuetify', '@nuxtjs/tailwindcss'],
   /*
    ** Nuxt.js modules
    */
@@ -52,7 +54,12 @@ export default {
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-purgecss',
   ],
+  purgeCSS: {
+    mode: 'postcss',
+    enabled: process.env.NODE_ENV === 'production',
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -89,5 +96,15 @@ export default {
      */
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     extend(config, ctx) {},
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        tailwindcss: path.resolve(__dirname, './tailwind.config.js'),
+        'postcss-nested': {},
+      },
+    },
+    preset: {
+      stage: 1, // see https://tailwindcss.com/docs/using-with-preprocessors#future-css-featuress
+    },
   },
 };
