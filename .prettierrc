@@ -3,5 +3,6 @@
   "arrowParens": "always",
   "singleQuote": true,
   "printWidth": 9999,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "endOfLine": "lf"
 }
