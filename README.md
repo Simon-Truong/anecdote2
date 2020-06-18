@@ -23,4 +23,5 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 # .env
 ```
+GOOGLE_MAPS_API_KEY=
 ```

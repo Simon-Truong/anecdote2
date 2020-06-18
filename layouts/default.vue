@@ -29,7 +29,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import NavItems from '../models/nav-items.model';
 
 @Component
-export default class DefaultTemplate extends Vue {
+export default class Default extends Vue {
   guestNav: NavItems[] = [
     {
       name: 'all',
@@ -43,7 +43,7 @@ export default class DefaultTemplate extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 nav li + li:before {
   content: '|';
   color: #4a5568;
