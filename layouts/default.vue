@@ -6,7 +6,7 @@
           <nav class="mb-2 flex justify-end">
             <ul>
               <li v-for="item in guestNav" :key="item.name">
-                <nuxt-link class="text-gray-600 hover:underline" :to="item.link"> {{ item.name }} </nuxt-link>
+                <nuxt-link class="text-gray-600 hover:underline font-medium" :to="item.link"> {{ item.name }} </nuxt-link>
               </li>
             </ul>
           </nav>
@@ -29,7 +29,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import NavItems from '../models/nav-items.model';
 
 @Component
-export default class Default extends Vue {
+export default class DefaultTemplate extends Vue {
   guestNav: NavItems[] = [
     {
       name: 'all',
@@ -46,6 +46,7 @@ export default class Default extends Vue {
 <style scoped lang="scss">
 nav li + li:before {
   content: '|';
+  color: #4a5568;
 }
 
 ul > li {
