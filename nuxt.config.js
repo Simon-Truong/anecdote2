@@ -41,7 +41,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/google-maps.js'],
+  plugins: [],
   /*
    ** Nuxt.js dev-modules
    */
@@ -106,6 +106,5 @@ export default {
     preset: {
       stage: 1, // see https://tailwindcss.com/docs/using-with-preprocessors#future-css-featuress
     },
-    transpile: [/^vue2-google-maps($|\/)/],
   },
 };
