@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import GoogleCharts from '../components/google-charts.vue';
+import GoogleCharts from '../components/google-charts/google-charts.vue';
 
 @Component({ components: { GoogleCharts } })
 export default class Home extends Vue {}
