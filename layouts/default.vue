@@ -3,7 +3,7 @@
     <v-row dense justify="center">
       <v-col cols="4">
         <div>
-          <nav class="mb-2 flex justify-end">
+          <nav class="mb-2 mr-5 flex justify-end">
             <ul>
               <li v-for="item in guestNav" :key="item.name">
                 <nuxt-link class="text-gray-600 hover:underline font-medium" :to="item.link"> {{ item.name }} </nuxt-link>
