@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-row>
+      <input id="search" type="text" class="border border-gray-900 border-solid my-2 px-1 py-1" name="search" />
+      <button class="border border-solid border-gray-700 rounded custom-bg-grey my-2 ml-2 px-2" type="button">Search</button>
+    </v-row>
+
     <v-row class="flex justify-around">
       <span v-for="continentOption in continentOptions" :key="continentOption.id">
         <input :id="continentOption.id" v-model="selectedContinent" type="radio" name="region" :value="continentOption.value" />
@@ -14,41 +19,59 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { GChart } from 'vue-google-charts';
-import ContinentOption from '../../models/continent-option.model';
+import ContinentOption, { Continent } from '../../models/continent-option.model';
 import countries from './countries.js';
 
 @Component({ components: { GChart } })
 export default class GoogleCharts extends Vue {
-  selectedContinent: string = 'world';
+  _selectedContinent: string = '_all';
+
+  get selectedContinent(): string {
+    return this._selectedContinent;
+  }
+
+  set selectedContinent(value: string) {
+    this._selectedContinent = value;
+
+    const options: { [key: string]: string | number } = {
+      height: 600,
+    };
+
+    if (value !== Continent.all) {
+      options.region = value;
+    }
+
+    this.options = options;
+  }
 
   continentOptions: ContinentOption[] = [
     {
-      id: 'world',
+      id: Continent.all,
       label: 'World',
-      value: 'world',
+      value: '_all',
     },
     {
-      id: 'africa',
+      id: Continent.africa,
       label: 'Africa',
       value: '002',
     },
     {
-      id: 'europe',
+      id: Continent.europe,
       label: 'Europe',
       value: '150',
     },
     {
-      id: 'americas',
+      id: Continent.americas,
       label: 'Americas',
       value: '019',
     },
     {
-      id: 'asia',
+      id: Continent.asia,
       label: 'Asia',
       value: '142',
     },
     {
-      id: 'oceania',
+      id: Continent.oceania,
       label: 'Oceania',
       value: '009',
     },
@@ -75,4 +98,8 @@ export default class GoogleCharts extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.custom-bg-grey {
+  background-color: rgb(239, 239, 239) !important;
+}
+</style>
