@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <input id="search" type="text" class="border border-gray-900 border-solid my-2 px-1 py-1" name="search" />
-      <button class="border border-solid border-gray-700 rounded custom-bg-grey my-2 ml-2 px-2" type="button">Search</button>
+    <v-row class="h-8">
+      <input id="search" type="text" class="h-6 border border-gray-900 border-solid px-1 py-1" name="search" />
+      <button class="h-6 border border-solid border-gray-700 rounded custom-bg-grey ml-2 px-2" type="button">Search</button>
     </v-row>
 
     <v-row class="flex justify-around">
