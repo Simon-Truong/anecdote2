@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <v-row class="h-8">
-      <input id="search" type="text" class="h-6 border border-gray-900 border-solid px-1 py-1" name="search" />
-      <button class="h-6 border border-solid border-gray-700 rounded custom-bg-grey ml-2 px-2" type="button">Search</button>
+      <input id="search" v-model="query" type="text" class="h-6 border border-gray-900 border-solid px-1 py-1" name="search" @keyup.enter="search" />
+      <button class="h-6 border border-solid border-gray-700 rounded custom-bg-grey ml-2 px-2" type="button" @click="search">Search</button>
     </v-row>
 
     <v-row class="flex justify-around">
@@ -24,6 +24,10 @@ import countries from './countries.js';
 
 @Component({ components: { GChart } })
 export default class GoogleCharts extends Vue {
+  get CHART_HEIGHT(): number {
+    return 600;
+  }
+
   _selectedContinent: string = '_all';
 
   get selectedContinent(): string {
@@ -34,7 +38,7 @@ export default class GoogleCharts extends Vue {
     this._selectedContinent = value;
 
     const options: { [key: string]: string | number } = {
-      height: 600,
+      height: this.CHART_HEIGHT,
     };
 
     if (value !== Continent.all) {
@@ -44,46 +48,50 @@ export default class GoogleCharts extends Vue {
     this.options = options;
   }
 
-  continentOptions: ContinentOption[] = [
-    {
-      id: Continent.all,
-      label: 'World',
-      value: '_all',
-    },
-    {
-      id: Continent.africa,
-      label: 'Africa',
-      value: '002',
-    },
-    {
-      id: Continent.europe,
-      label: 'Europe',
-      value: '150',
-    },
-    {
-      id: Continent.americas,
-      label: 'Americas',
-      value: '019',
-    },
-    {
-      id: Continent.asia,
-      label: 'Asia',
-      value: '142',
-    },
-    {
-      id: Continent.oceania,
-      label: 'Oceania',
-      value: '009',
-    },
-  ];
+  get continentOptions(): ContinentOption[] {
+    return [
+      {
+        id: Continent.all,
+        label: 'World',
+        value: '_all',
+      },
+      {
+        id: Continent.africa,
+        label: 'Africa',
+        value: '002',
+      },
+      {
+        id: Continent.europe,
+        label: 'Europe',
+        value: '150',
+      },
+      {
+        id: Continent.americas,
+        label: 'Americas',
+        value: '019',
+      },
+      {
+        id: Continent.asia,
+        label: 'Asia',
+        value: '142',
+      },
+      {
+        id: Continent.oceania,
+        label: 'Oceania',
+        value: '009',
+      },
+    ];
+  }
 
-  settings: any = {
-    packages: ['geochart'],
-    mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
-  };
+  get settings(): any {
+    return {
+      packages: ['geochart'],
+      mapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+    };
+  }
 
   options: { [key: string]: string | number } = {
-    height: 600,
+    height: this.CHART_HEIGHT,
   };
 
   chartEvents: { [key: string]: (obj: { region: string }) => void } = {
@@ -95,6 +103,21 @@ export default class GoogleCharts extends Vue {
   countryData: Array<Array<string | number>> = countries.map((country) => [country, Math.floor(Math.random() * 10000)]);
 
   data: Array<Array<string | number>> = [['Country', 'Anecdotes'], ...this.countryData];
+
+  query: string = '';
+
+  // TODO: refactor this with radio buttons
+  search(): void {
+    const options: { [key: string]: string | number } = {
+      height: this.CHART_HEIGHT,
+    };
+
+    if (this.query) {
+      options.region = this.query;
+    }
+
+    this.options = options;
+  }
 }
 </script>
 
