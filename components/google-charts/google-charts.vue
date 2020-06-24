@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="h-8">
       <input id="search" v-model="query" type="text" class="h-6 border border-gray-900 border-solid px-1 py-1" name="search" @keyup.enter="search" />
-      <button class="h-6 border border-solid border-gray-700 rounded custom-bg-grey ml-2 px-2" type="button" @click="search">Search</button>
+      <button class="h-6 border border-solid border-gray-700 rounded custom-bg-grey ml-2 px-2 text-sm" type="button" @click="search">Search</button>
     </v-row>
 
     <v-row class="flex justify-around">
