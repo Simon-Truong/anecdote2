@@ -3,13 +3,7 @@
     <v-row dense justify="center">
       <v-col cols="4">
         <div>
-          <nav class="mb-2 mr-5 flex justify-end">
-            <ul>
-              <li v-for="item in guestNav" :key="item.name">
-                <nuxt-link class="text-gray-600 hover:underline font-medium" :to="item.link"> {{ item.name }} </nuxt-link>
-              </li>
-            </ul>
-          </nav>
+          <Navigation />
 
           <v-card>
             <v-toolbar flat dense>
@@ -26,30 +20,10 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import NavItems from '../models/nav-items.model';
+import Navigation from '../components/navigation.vue';
 
-@Component
-export default class Default extends Vue {
-  guestNav: NavItems[] = [
-    {
-      name: 'all',
-      link: 'browse',
-    },
-    {
-      name: 'login/signup',
-      link: 'login',
-    },
-  ];
-}
+@Component({ components: { Navigation } })
+export default class Default extends Vue {}
 </script>
 
-<style lang="scss" scoped>
-nav li + li:before {
-  content: '|';
-  color: #4a5568;
-}
-
-ul > li {
-  display: inline;
-}
-</style>
+<style lang="scss" scoped></style>
